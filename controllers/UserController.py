@@ -1,14 +1,11 @@
-from fastapi import HTTPException, Depends, Header,Response,status
+from fastapi import HTTPException, Depends, Header,Response,status,APIRouter
 from fastapi.security import OAuth2PasswordRequestForm
 from services.UserService import UserService
 from DTOs.User import User
-from fastapi_utils.cbv import cbv
-from fastapi_utils.inferring_router import InferringRouter
 
-user_controller_router = InferringRouter()
+user_controller_router = APIRouter()
 
 
-@cbv(user_controller_router)
 class UserController:
     def __init__(self):
         self.userService = UserService()

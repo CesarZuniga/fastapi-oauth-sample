@@ -1,16 +1,12 @@
-from fastapi import HTTPException, Depends,status
+from fastapi import HTTPException, Depends,status,APIRouter
 from services.UserService import UserService
 from services.BookService import BookService
 from DTOs.Book import Book
-from fastapi_utils.cbv import cbv
-from fastapi_utils.inferring_router import InferringRouter
 from fastapi.security import OAuth2PasswordBearer
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="users/login")
-book_controller_router = InferringRouter()
 
-
-@cbv(book_controller_router)
+book_controller_router = APIRouter()
 class BookController:
     def __init__(self):
         self.bookService = BookService()
